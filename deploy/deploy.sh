@@ -8,7 +8,7 @@ HOST="${1:-root@103.247.8.52}"
 PORT="${2:-8080}"
 DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$DIR/.."
-SCRIPT_B64="$(base64 -w0 "$DIR/remote.sh")"
+SCRIPT_B64="$(tr -d '\r' < "$DIR/remote.sh" | base64 -w0)"
 
 STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT

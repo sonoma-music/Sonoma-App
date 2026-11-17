@@ -5,5 +5,5 @@
 set -euo pipefail
 HOST="${1:-root@103.247.8.52}"
 DIR="$(cd "$(dirname "$0")" && pwd)"
-B64="$(base64 -w0 "$DIR/caddy-remote.sh")"
+B64="$(tr -d '\r' < "$DIR/caddy-remote.sh" | base64 -w0)"
 ssh -o StrictHostKeyChecking=accept-new "$HOST" "bash -c \"\$(echo $B64 | base64 -d)\""

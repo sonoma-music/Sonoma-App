@@ -5,5 +5,5 @@
 set -euo pipefail
 HOST="${1:-root@103.247.8.52}"
 DIR="$(cd "$(dirname "$0")" && pwd)"
-B64="$(base64 -w0 "$DIR/admin-remote.sh")"
+B64="$(tr -d '\r' < "$DIR/admin-remote.sh" | base64 -w0)"
 tar -czf - -C "$DIR/../admin" server.js public | ssh -o StrictHostKeyChecking=accept-new "$HOST" "bash -c \"\$(echo $B64 | base64 -d)\""

@@ -6,6 +6,6 @@ set -euo pipefail
 HOST="${1:-root@103.247.8.52}"
 DIR="$(cd "$(dirname "$0")" && pwd)"
 (cd "$DIR/.." && node tools/build-docs.js)
-B64="$(base64 -w0 "$DIR/docs-remote.sh")"
+B64="$(tr -d '\r' < "$DIR/docs-remote.sh" | base64 -w0)"
 tar -czf - -C "$DIR/../docs-site" . | ssh -o StrictHostKeyChecking=accept-new "$HOST" "bash -c \"\$(echo $B64 | base64 -d)\""
 echo "Done: https://docs.trysonoma.xyz/"
