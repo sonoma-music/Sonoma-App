@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src sonoma-media:; connect-src https://lrclib.net ws: wss:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<title>Sonoma</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="bg"><div id="bgImg"></div></div>
+<div id="drag"></div>
+<div id="winCtl">
+  <button id="wMin" data-ic="min" title="Minimize"></button>
+  <button id="wMax" data-ic="max" title="Maximize"></button>
+  <button id="wClose" data-ic="close" title="Close" class="x"></button>
+</div>
+
+<div id="app">
+  <aside id="rail">
+    <div class="logo" title="Sonoma"><svg viewBox="0 0 40 40" fill="#fff"><rect x="5" y="14" width="7" height="16" rx="3.5"/><rect x="16.5" y="6" width="7" height="28" rx="3.5"/><rect x="28" y="11" width="7" height="13" rx="3.5"/></svg></div>
+    <div class="strip">
+      <nav id="nav">
+        <button data-view="home" data-ic="homeF" title="Home"></button>
+        <button data-view="search" data-ic="searchF" title="Search"></button>
+        <button data-view="library" data-ic="libraryF" title="Library"></button>
+        <button data-view="rooms" data-ic="usersF" title="Listening rooms"><b id="roomDot" class="dot hidden"></b></button>
+      </nav>
+      <div class="rail-foot">
+        <button id="meChip" data-view="profile" title="Profile"></button>
+        <button data-view="settings" data-ic="settingsF" title="Settings"></button>
+      </div>
+    </div>
+  </aside>
+
+  <div id="content">
+    <main id="main"></main>
+
+    <section id="panel" class="hidden">
+      <div class="tabs"><button data-tab="lyrics" class="on">Lyrics</button><button data-tab="queue">Queue</button><span id="lyrSrc"></span></div>
+      <div id="lyrBody"><p class="empty">Play a song to see its lyrics.</p></div>
+      <div id="queueBody" class="hidden"></div>
+    </section>
+
+    <footer id="bar">
+      <div id="prog"><div id="progFill"></div><span id="tCur">0:00</span><span id="tDur">0:00</span></div>
+      <div class="now">
+        <div id="nowCover" class="cover"></div>
+        <div class="now-t"><b id="nowTitle">Nothing playing</b><span id="nowArtist"></span></div>
+        <button id="favBtn" class="ib fav" data-ic="heartF" title="Favorite"></button>
+      </div>
+      <div class="ctrl">
+        <button id="prevBtn" class="ib lg" data-ic="prev" title="Previous"></button>
+        <button id="playBtn" class="play" data-ic="play" title="Play/Pause"></button>
+        <button id="nextBtn" class="ib lg" data-ic="next" title="Next"></button>
+      </div>
+      <div class="extra">
+        <div class="pillgrp">
+          <button id="shufBtn" class="ib" data-ic="shuffle" title="Shuffle"></button>
+          <button id="repBtn" class="ib" data-ic="repeat" title="Repeat"></button>
+          <button id="lyrBtn" class="ib" data-ic="mic" title="Lyrics"></button>
+          <span class="volwrap"><button id="muteBtn" class="ib" data-ic="vol" title="Mute"></button><input id="vol" type="range" min="0" max="100" value="80"></span>
+          <button id="shareBtn" class="ib" data-ic="link" title="Copy smart link"></button>
+          <i class="sep"></i>
+          <button id="queueBtn" class="ib" data-ic="panel" title="Queue"></button>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+<div id="menu" class="hidden"></div>
+<div id="modal" class="hidden"></div>
+<div id="toast"></div>
+<audio id="audio"></audio>
+<script src="lyrics.js"></script>
+<script src="renderer.js"></script>
+<script src="get.js"></script>
+</body>
+</html>

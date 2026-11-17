@@ -1,0 +1,64 @@
+{
+  "name": "sonoma",
+  "version": "0.1.0",
+  "description": "Sonoma: ad-free desktop music player with word-synced lyrics, playlist import, smart links and listening rooms",
+  "main": "app/main.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "server": "node server/server.js",
+    "dist:win": "electron-builder --win nsis --x64",
+    "dist:linux": "electron-builder --linux tar.gz --x64",
+    "docs": "node tools/build-docs.js"
+  },
+  "dependencies": {
+    "music-metadata": "^11.0.0",
+    "node-taglib-sharp": "^6.0.3",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8",
+    "marked": "^14.1.4"
+  },
+  "allowScripts": {
+    "electron@33.4.11": true
+  },
+  "author": "Sonoma",
+  "homepage": "https://trysonoma.xyz",
+  "build": {
+    "appId": "xyz.trysonoma.app",
+    "productName": "Sonoma",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "app/**",
+      "package.json"
+    ],
+    "protocols": [
+      {
+        "name": "Sonoma smart links",
+        "schemes": [
+          "sonoma"
+        ]
+      }
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "artifactName": "Sonoma-Setup-${version}.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "shortcutName": "Sonoma"
+    },
+    "linux": {
+      "icon": "build/icon.png",
+      "category": "Audio",
+      "artifactName": "Sonoma-${version}-linux-x64.${ext}"
+    }
+  }
+}

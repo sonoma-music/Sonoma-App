@@ -1,0 +1,9 @@
+node_modules/
+release/
+docs-site/
+*.log
+.DS_Store
+Thumbs.db
+# local settings and secrets
+.env
+.claude/
