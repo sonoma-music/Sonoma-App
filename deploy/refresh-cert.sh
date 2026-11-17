@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Makes Caddy retry the HTTPS certificate for trysonoma.xyz right away (after DNS starts working).
+# Makes Caddy retry HTTPS certificates (trysonoma.xyz, docs.trysonoma.xyz) right away after DNS starts working.
 # Restarting Caddy pauses its sites for about a second.
 # Usage (from the project folder):  bash deploy/refresh-cert.sh [user@host]
 HOST="${1:-root@103.247.8.52}"
