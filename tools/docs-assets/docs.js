@@ -59,5 +59,11 @@
     if (e.key === 'Escape') { q.blur(); box.classList.remove('open'); }
   });
   document.addEventListener('click', e => { if (!e.target.closest('.search')) box.classList.remove('open'); });
-  document.addEventListener('keydown', e => { if (e.key === '/' && document.activeElement !== q && !e.target.closest('input,textarea')) { e.preventDefault(); q.focus(); } });
+  const top = document.querySelector('.top');
+  const openSearch = () => { top.classList.add('searching'); q.focus(); };
+  document.getElementById('sbtn').addEventListener('click', openSearch);
+  q.addEventListener('blur', () => setTimeout(() => { if (!q.value) top.classList.remove('searching'); }, 150));
+  document.addEventListener('keydown', e => {
+    if ((e.key === 'k' && (e.ctrlKey || e.metaKey)) || (e.key === '/' && !e.target.closest('input,textarea'))) { e.preventDefault(); openSearch(); }
+  });
 })();
