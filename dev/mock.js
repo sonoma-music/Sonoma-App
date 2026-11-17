@@ -22,21 +22,21 @@
   const c3 = enc(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff9a5a"/><stop offset="1" stop-color="#c2185b"/></linearGradient></defs><rect width="100" height="100" fill="url(#a)"/><circle cx="64" cy="38" r="18" fill="#fff3e0"/><path d="M0 78 Q30 58 55 74 T100 70V100H0Z" fill="#4a0f2e"/></svg>`);
   const c4 = enc(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0f2a1e"/><g fill="none" stroke="#7be0a5" stroke-width="2.5">${[10, 20, 30, 40].map(r => `<circle cx="50" cy="50" r="${r}"/>`).join('')}</g></svg>`);
 
-  const names = ['TV', 'Mulholland', 'evil icon baby', 'pleasure', 'NAKED', 'Razorblade kiss', 'Pretty Girls', 'andy warhol', '1 more', 'BABYLON', 'Static', 'Sundown', 'Velvet', 'Outro'];
+  const names = ['Neon Tide', 'Glass Houses', 'Harbor Lights', 'Paper Planes', 'Static Bloom', 'Low Tide', 'Afterglow', 'Night Bus', 'Satellite', 'Golden Hour', 'Static', 'Sundown', 'Velvet', 'Outro'];
   const durs = [189, 159, 142, 198, 208, 189, 178, 177, 122, 147, 201, 175, 166, 190];
   const ex = [1, 3, 4, 6, 7, 8, 9];
-  const library = names.map((t, i) => ({ id: 'demo' + i, path: 'demo' + i, title: t, artist: 'Demo Artist', albumArtist: 'Demo Artist', album: 'Shh...', year: 2026, trackNo: i + 1, duration: durs[i], cover: c1, explicit: ex.includes(i) }));
-  library.push({ id: 'x', path: 'x', title: 'Gestalt', artist: '17 Seventeen', albumArtist: '17 Seventeen', album: 'Gestalt', year: 2025, trackNo: 1, duration: 200, cover: c2 });
+  const library = names.map((t, i) => ({ id: 'demo' + i, path: 'demo' + i, title: t, artist: 'Lumen', albumArtist: 'Lumen', album: 'Midnight Signals', year: 2026, trackNo: i + 1, duration: durs[i], cover: c1, explicit: ex.includes(i) }));
+  library.push({ id: 'x', path: 'x', title: 'Northern Lines', artist: 'Kite Season', albumArtist: 'Kite Season', album: 'Northern Lines', year: 2025, trackNo: 1, duration: 200, cover: c2 });
   ['Amber', 'Low Tide', 'Paper Moon'].forEach((t, i) => library.push({ id: 'y' + i, path: 'y' + i, title: t, artist: 'Golden Hour', albumArtist: 'Golden Hour', album: 'Sunset Rows', year: 2024, trackNo: i + 1, duration: 180 + i * 20, cover: c3 }));
   ['Orbit', 'Signal'].forEach((t, i) => library.push({ id: 'z' + i, path: 'z' + i, title: t, artist: 'North Fields', albumArtist: 'North Fields', album: 'Rings', year: 2023, trackNo: i + 1, duration: 210 + i * 15, cover: c4 }));
 
   window.sonoma = {
     getStore: async () => ({ library, playlists: [{ id: 'p1', name: 'Late night', items: library.slice(0, 5).map(t => ({ trackId: t.id, title: t.title, artist: t.artist })) }] }),
     setStore: async () => true, pickLibrary: async () => [], onLibraryProgress() {},
-    localLyrics: async () => null, importM3U: async () => null, importSpotify: async () => null,
+    localLyrics: async () => ['[00:00.00]City lights are humming low','[00:04.00]Every window holds a song','[00:08.00]I keep your rhythm in my pocket','[00:12.00]Walking home where we belong','[00:16.00]Turn it up and let it carry','[00:20.00]Every word in perfect time'].join(String.fromCharCode(10)), importM3U: async () => null, importSpotify: async () => null,
     winMin() {}, winMax() {}, winClose() {}, copy: async () => true, openExternal() {}, onOpenLink() {}, mediaUrl: () => '',
     // Get music (demo answers only)
-    resolveLink: async () => ({ kind: 'song', title: 'Blinding Lights', artist: 'The Weeknd', album: 'After Hours', cover: c3,
+    resolveLink: async () => ({ kind: 'song', title: 'Harbor Lights', artist: 'Lumen', album: 'Low Tide', cover: c3,
       links: ['spotify', 'appleMusic', 'youtubeMusic', 'deezer', 'tidal', 'soundcloud'].map(p => ({ platform: p, url: 'https://example.com' })),
       buy: [['Qobuz Store', 'Hi-res FLAC'], ['Bandcamp', 'FLAC, artist-friendly'], ['7digital', 'FLAC / MP3'], ['HDtracks', 'Hi-res FLAC']].map(([name, note]) => ({ name, note, url: 'https://example.com' })) }),
     buyLinks: async () => [{ name: 'Qobuz Store', note: 'Hi-res FLAC', url: 'https://example.com' }],
@@ -62,7 +62,13 @@
     $('#nowCover').outerHTML = coverHTML(t.cover).replace('class="cover ', 'id="nowCover" class="cover ');
     $('#bar').style.setProperty('--nc', `url('${t.cover}')`);
     syncModeBtns();
-    if (v === 'album' || !v) go('album', albums().find(a => a.title === 'Shh...').key); else if (v.startsWith('get')) { S.settings.downloadDir = 'D:\Music\Sonoma'; go('get'); } else go(v);
+    S.settings.downloadDir = 'D:/Music/Sonoma';
+    if (v === 'album' || !v) go('album', albums().find(a => a.title === 'Midnight Signals').key);
+    else if (v === 'lyrics') { go('album', albums().find(a => a.title === 'Midnight Signals').key); P.queue = ['demo0']; P.index = 0; P.current = byId('demo0'); $('#nowTitle').textContent = 'Neon Tide'; $('#nowArtist').textContent = 'Lumen'; loadLyrics(P.current); openPanel('lyrics'); setTimeout(() => { const ps = document.querySelectorAll('#lyrBody p'); ps.forEach((p, i) => p.classList.toggle('cur', i === 2)); ps[2] && ps[2].querySelectorAll('span').forEach((w, i) => w.classList.toggle('lit', i < 4)); }, 600); }
+    else if (v === 'get-link') { go('get'); setTimeout(() => { $('#lkIn').value = 'https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC'; $('#lkForm').requestSubmit(); }, 100); }
+    else if (v === 'get-sources') { go('get'); document.querySelector('.seg [data-t=sources]').click(); setTimeout(() => { $('#srIn').value = 'live at the fillmore'; $('#srForm').requestSubmit(); setTimeout(() => document.querySelector('[data-s]').click(), 300); }, 100); }
+    else if (v === 'get-queue') { go('get'); document.querySelector('.seg [data-t=queue]').click(); }
+    else go(v);
   };
   addEventListener('load', () => setTimeout(() => { const v = location.search.slice(1); if (v) window.__demo(v); }, 300));
 })();

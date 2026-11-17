@@ -3,6 +3,11 @@ const http = require('http'), fs = require('fs'), path = require('path');
 const root = path.join(__dirname, '..');
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.svg': 'image/svg+xml' };
 http.createServer((req, res) => {
+  if (req.url.startsWith('/api/') || req.url.startsWith('/admin')) { // forward to a local admin service (admin/server.js) if it runs
+    const fwd = http.request({ host: '127.0.0.1', port: 4610, path: req.url, method: req.method, headers: req.headers }, r => { res.writeHead(r.statusCode, r.headers); r.pipe(res); });
+    fwd.on('error', () => { res.writeHead(502); res.end('admin service not running'); });
+    return req.pipe(fwd);
+  }
   let p = decodeURIComponent(req.url.split('?')[0]);
   if (p === '/') {
     const html = fs.readFileSync(path.join(root, 'app/renderer/index.html'), 'utf8')

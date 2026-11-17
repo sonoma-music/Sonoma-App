@@ -7,3 +7,5 @@ Thumbs.db
 # local settings and secrets
 .env
 .claude/
+admin/data/
+marketing/x/out/

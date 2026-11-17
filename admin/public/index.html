@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sonoma Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#040507;--card:#0f1218;--card2:#161a23;--ink:#eef1fb;--muted:#a3aac0;--faint:#6f768d;--line:rgba(255,255,255,.08);--ring:rgba(255,255,255,.14);--cyan:#97e6ff;--blue:#0a5cff;--ok:#86efac;--bad:#ff8a8a;--mono:"Geist Mono",ui-monospace,monospace;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 Geist,system-ui,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+body::before{content:"";position:fixed;inset:0 0 auto;height:420px;z-index:-1;background:radial-gradient(40% 70% at 15% 0%,rgba(10,92,255,.3),transparent 70%),radial-gradient(35% 60% at 90% 0%,rgba(42,109,255,.2),transparent 70%)}
+button,input,textarea,select{font:inherit;color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:28px 20px 60px}
+header{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+header svg{width:26px;height:26px}
+header b{font-size:19px;font-weight:500}
+header em{font:500 12px var(--mono);font-style:normal;padding:1px 7px;border-radius:6px;box-shadow:inset 0 0 0 1px var(--ring);color:var(--muted)}
+header .sp{flex:1}
+.b{height:40px;padding:0 18px;border-radius:9px;border:0;cursor:pointer;font-weight:500;font-size:14px;display:inline-flex;align-items:center;gap:8px;justify-content:center;transition:transform .3s cubic-bezier(.34,1.45,.5,1),background .2s}
+.b:active{transform:scale(.97)}
+.b.pri{background:var(--cyan);color:#101638}.b.pri:hover{background:#7fdcfb}
+.b.ghost{background:transparent;box-shadow:inset 0 0 0 1px var(--ring)}.b.ghost:hover{box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+.b.sm{height:32px;padding:0 12px;font-size:13px}
+.b:disabled{opacity:.5;cursor:default}
+.login{max-width:400px;margin:12vh auto 0;padding:28px;border-radius:16px;background:var(--card);box-shadow:0 0 0 1px var(--line),0 30px 60px -30px rgba(0,0,0,.8)}
+.login h1{font-size:24px;font-weight:500;margin-bottom:6px}
+.login p{color:var(--muted);font-size:14px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1.25fr 1fr;gap:20px;align-items:start}
+.card{background:var(--card);border-radius:16px;padding:22px;box-shadow:0 0 0 1px var(--line)}
+.card+.card{margin-top:20px}
+.card h2{font-size:16px;font-weight:600;margin-bottom:4px}
+.card>p{color:var(--faint);font-size:13.5px;margin-bottom:16px}
+label{display:block;font-size:12.5px;color:var(--muted);margin:14px 0 6px}
+input,textarea,select{width:100%;background:var(--card2);border:1px solid transparent;border-radius:9px;padding:10px 12px;outline:0;transition:border-color .2s}
+input:focus,textarea:focus,select:focus{border-color:rgba(151,230,255,.45)}
+textarea{resize:vertical;min-height:84px}
+.mono{font-family:var(--mono);font-size:13.5px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hint{font-size:12px;color:var(--faint);margin-top:6px}
+.count{float:right;font-family:var(--mono)}
+.err{color:var(--bad);font-size:13px;margin-top:10px;min-height:20px}
+.drop{display:flex;align-items:center;gap:14px;padding:12px;border-radius:12px;background:var(--card2);margin-top:8px}
+.drop img{object-fit:cover;background:#0a0c12}
+.drop .av{width:64px;height:64px;border-radius:50%}
+.drop .bn{width:160px;height:54px;border-radius:8px}
+.drop span{flex:1;font-size:13px;color:var(--muted)}
+.save{position:sticky;bottom:16px;display:flex;gap:10px;align-items:center;justify-content:flex-end;margin-top:20px;padding:12px;border-radius:14px;background:rgba(15,18,24,.85);backdrop-filter:blur(12px);box-shadow:0 0 0 1px var(--line)}
+.save .st{margin-right:auto;font-size:13px;color:var(--faint)}
+.seg{display:inline-flex;padding:3px;border-radius:9px;background:var(--card2)}
+.seg button{border:0;background:none;padding:6px 14px;border-radius:7px;cursor:pointer;color:var(--muted)}
+.seg button.on{background:rgba(255,255,255,.12);color:var(--ink)}
+/* preview */
+.pv h3{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--faint);margin-bottom:10px}
+.xcard{border-radius:14px;overflow:hidden;background:#000;box-shadow:0 0 0 1px var(--line)}
+.xcard .bn{height:110px;background:linear-gradient(120deg,#0a2a66,#0a5cff);background-size:cover;background-position:center}
+.xcard .body{padding:0 16px 16px}
+.xcard .av{width:76px;height:76px;border-radius:50%;border:4px solid #000;margin-top:-38px;background:#0b2a66 center/cover}
+.xcard b{display:block;font-size:18px;margin-top:6px}
+.xcard .h{color:#71767b;font-size:14px}
+.xcard p{font-size:14px;margin-top:8px;white-space:pre-wrap}
+.tok{margin-top:16px;border-radius:14px;padding:16px;background:linear-gradient(180deg,rgba(151,230,255,.1),rgba(151,230,255,.03));box-shadow:inset 0 0 0 1px rgba(151,230,255,.15)}
+.tok small{color:var(--muted);font-size:12px}
+.tok .t{font-size:20px;font-weight:600;margin:2px 0 8px}
+.tok code{display:block;font:12.5px var(--mono);word-break:break-all;color:var(--cyan)}
+.pill{display:inline-block;font:500 11px var(--mono);padding:1px 8px;border-radius:999px;background:var(--cyan);color:#101638;margin-left:6px;vertical-align:2px}
+.pill.soon{background:rgba(255,255,255,.12);color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;padding:10px 18px;border-radius:10px;background:#fff;color:#0a0f2a;font-weight:500;transition:.3s}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.hidden{display:none!important}
+@media (max-width:860px){.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><svg viewBox="0 0 40 40" fill="currentColor"><rect x="5" y="14" width="7" height="16" rx="3.5"/><rect x="16.5" y="6" width="7" height="28" rx="3.5"/><rect x="28" y="11" width="7" height="13" rx="3.5"/></svg><b>Sonoma</b><em>Admin</em><span class="sp"></span>
+    <a class="b ghost sm" href="/" target="_blank" rel="noopener">View site</a><button class="b ghost sm hidden" id="out">Log out</button></header>
+
+  <form class="login hidden" id="login">
+    <h1>Admin login</h1>
+    <p>Enter the admin token printed when the admin service was installed.</p>
+    <input id="tok" type="password" autocomplete="current-password" placeholder="Admin token" required>
+    <div class="err" id="lerr"></div>
+    <button class="b pri" style="width:100%">Log in</button>
+  </form>
+
+  <div id="app" class="hidden">
+    <div class="grid">
+      <div>
+        <div class="card">
+          <h2>Token</h2>
+          <p>Shown on trysonoma.xyz. Leave the contract address empty to hide the token section.</p>
+          <div class="row">
+            <div><label>Ticker</label><input id="ticker" class="mono" maxlength="13" placeholder="SONOMA"></div>
+            <div><label>Chain</label><input id="chain" maxlength="40" placeholder="Robinhood Chain"></div>
+          </div>
+          <label>Contract address (CA)</label>
+          <input id="ca" class="mono" maxlength="42" placeholder="0x…" spellcheck="false">
+          <div class="hint">0x followed by 40 hex characters. Double-check it: people will copy this.</div>
+          <label>Launch status</label>
+          <div class="seg" id="state"><button type="button" data-v="soon">Coming soon</button><button type="button" data-v="live">Live</button></div>
+          <label>Explorer link</label><input id="explorerUrl" placeholder="https://…/token/0x…">
+          <div class="row">
+            <div><label>Buy link</label><input id="buyUrl" placeholder="https://…"></div>
+            <div><label>Chart link</label><input id="chartUrl" placeholder="https://…"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h2>X account</h2>
+          <p>Linked from the website. The bio is for reference; paste the same text into X.</p>
+          <div class="row">
+            <div><label>Handle</label><input id="handle" class="mono" maxlength="16" placeholder="@trysonoma"></div>
+            <div><label>Display name</label><input id="name" maxlength="50" placeholder="Sonoma"></div>
+          </div>
+          <label>Bio <span class="count" id="bioN">0/160</span></label>
+          <textarea id="bio" maxlength="160"></textarea>
+          <label>Profile picture</label>
+          <div class="drop"><img class="av" id="avImg" alt=""><span>PNG, JPG or WebP · 400×400 · max 5 MB</span><input type="file" id="avFile" accept="image/png,image/jpeg,image/webp" hidden><button type="button" class="b ghost sm" data-pick="avFile">Upload</button></div>
+          <label>Banner</label>
+          <div class="drop"><img class="bn" id="bnImg" alt=""><span>1500×500 recommended</span><input type="file" id="bnFile" accept="image/png,image/jpeg,image/webp" hidden><button type="button" class="b ghost sm" data-pick="bnFile">Upload</button></div>
+        </div>
+      </div>
+      <div class="pv" style="position:sticky;top:20px">
+        <h3>Preview</h3>
+        <div class="xcard"><div class="bn" id="pBn"></div><div class="body"><div class="av" id="pAv"></div><b id="pName">Sonoma</b><span class="h" id="pHandle">@handle</span><p id="pBio"></p></div></div>
+        <div class="tok"><small id="pChain">Robinhood Chain</small><div class="t">$<span id="pTicker">SONOMA</span><span class="pill soon" id="pState">soon</span></div><code id="pCa">No contract address yet</code></div>
+      </div>
+    </div>
+    <div class="save"><span class="st" id="st">Not saved yet</span><div class="err" id="serr" style="margin:0"></div><button class="b pri" id="saveBtn">Save changes</button></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const H = { 'Content-Type': 'application/json', 'X-Sonoma-Admin': '1' };
+  const api = async (url, opts = {}) => {
+    const r = await fetch(url, { credentials: 'same-origin', ...opts, headers: { ...H, ...(opts.headers || {}) } });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) { const e = new Error(d.error || r.statusText); e.status = r.status; throw e; }
+    return d;
+  };
+  const toast = m => { const t = $('toast'); t.textContent = m; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 2200); };
+  let cfg = null, state = 'soon';
+
+  const fields = ['ticker', 'chain', 'ca', 'explorerUrl', 'buyUrl', 'chartUrl'];
+  function fill(c) {
+    cfg = c;
+    fields.forEach(k => $(k).value = c[k] || '');
+    $('handle').value = c.x?.handle ? '@' + c.x.handle : ''; $('name').value = c.x?.name || ''; $('bio').value = c.x?.bio || '';
+    state = c.launchState || 'soon';
+    $('avImg').src = c.avatar || ''; $('bnImg').src = c.banner || '';
+    $('st').textContent = c.updatedAt ? 'Last saved ' + new Date(c.updatedAt).toLocaleString() : 'Not saved yet';
+    preview();
+  }
+  function preview() {
+    document.querySelectorAll('#state button').forEach(b => b.classList.toggle('on', b.dataset.v === state));
+    $('bioN').textContent = $('bio').value.length + '/160';
+    $('pName').textContent = $('name').value || 'Sonoma';
+    $('pHandle').textContent = '@' + ($('handle').value.replace(/^@/, '') || 'handle');
+    $('pBio').textContent = $('bio').value;
+    $('pTicker').textContent = ($('ticker').value.replace(/^\$/, '') || 'SONOMA').toUpperCase();
+    $('pChain').textContent = $('chain').value || 'Robinhood Chain';
+    $('pCa').textContent = $('ca').value || 'No contract address yet';
+    $('pState').textContent = state === 'live' ? 'live' : 'soon'; $('pState').classList.toggle('soon', state !== 'live');
+    $('pAv').style.backgroundImage = cfg?.avatar ? `url('${cfg.avatar}')` : '';
+    $('pBn').style.backgroundImage = cfg?.banner ? `url('${cfg.banner}')` : '';
+  }
+  document.querySelectorAll('#app input, #app textarea').forEach(i => i.addEventListener('input', () => { preview(); $('st').textContent = 'Unsaved changes'; }));
+  $('state').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; state = b.dataset.v; preview(); $('st').textContent = 'Unsaved changes'; });
+
+  async function boot() {
+    try { fill(await api('/api/admin/config')); $('app').classList.remove('hidden'); $('out').classList.remove('hidden'); $('login').classList.add('hidden'); }
+    catch (e) { if (e.status === 401) { $('login').classList.remove('hidden'); $('app').classList.add('hidden'); $('tok').focus(); } else toast(e.message); }
+  }
+  $('login').addEventListener('submit', async e => {
+    e.preventDefault(); $('lerr').textContent = '';
+    try { await api('/api/admin/login', { method: 'POST', body: JSON.stringify({ token: $('tok').value }) }); $('tok').value = ''; boot(); }
+    catch (err) { $('lerr').textContent = err.message; }
+  });
+  $('out').addEventListener('click', async () => { await api('/api/admin/logout', { method: 'POST' }).catch(() => {}); location.reload(); });
+  $('saveBtn').addEventListener('click', async () => {
+    $('serr').textContent = ''; $('saveBtn').disabled = true;
+    try {
+      const body = Object.fromEntries(fields.map(k => [k, $(k).value.trim()]));
+      body.launchState = state;
+      body.x = { handle: $('handle').value.trim(), name: $('name').value.trim(), bio: $('bio').value };
+      fill(await api('/api/admin/config', { method: 'PUT', body: JSON.stringify(body) }));
+      toast('Saved. The website updates within a minute.');
+    } catch (err) { $('serr').textContent = err.message; if (err.status === 401) boot(); }
+    $('saveBtn').disabled = false;
+  });
+  document.querySelectorAll('[data-pick]').forEach(b => b.addEventListener('click', () => $(b.dataset.pick).click()));
+  const upload = kind => async e => {
+    const f = e.target.files[0]; if (!f) return;
+    if (f.size > 5 * 1024 * 1024) return toast('Max 5 MB');
+    try { fill(await api('/api/admin/upload?kind=' + kind, { method: 'POST', body: f, headers: { 'Content-Type': f.type } })); toast('Uploaded'); }
+    catch (err) { toast(err.message); }
+    e.target.value = '';
+  };
+  $('avFile').addEventListener('change', upload('avatar'));
+  $('bnFile').addEventListener('change', upload('banner'));
+  boot();
+})();
+</script>
+</body>
+</html>

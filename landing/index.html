@@ -402,6 +402,34 @@ summary{color:#8b92a8}
 footer{background:rgba(9,11,16,.82)}
 .shot{box-shadow:0 30px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.08)}
 
+/* ---------- token (filled from /api/public, set in the admin panel) ---------- */
+.hidden{display:none!important}
+.navx{display:grid;place-items:center;width:36px;height:36px;border-radius:999px;color:var(--ink);transition:background .2s}
+.navx:hover{background:rgba(255,255,255,.08)}
+.navx svg{width:16px;height:16px}
+.token{background:var(--bg);padding:40px 0 140px}
+.tk{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.tk h2{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.tk-state{font:500 12px var(--mono);font-style:normal;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,.1);color:var(--muted);letter-spacing:0}
+.tk-state.live{background:var(--cyan);color:#101638}
+.tk-ca{display:flex;align-items:center;gap:12px;margin-top:26px;padding:12px 12px 12px 16px;border-radius:12px;background:var(--card);box-shadow:0 0 0 1px var(--line)}
+.tk-ca small{font-size:12px;color:var(--faint);white-space:nowrap}
+.tk-ca code{flex:1;min-width:0;font:13.5px var(--mono);color:var(--cyan);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tk-ca .b{height:34px;padding:0 14px;font-size:13px}
+.tk-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.tk-links .b{height:38px;font-size:13.5px}
+.tk-note{margin-top:18px;font-size:12.5px;color:var(--faint);max-width:520px}
+.tk-x{display:block;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 0 0 1px var(--line),0 40px 80px -40px rgba(10,92,255,.5);transition:transform .7s var(--spring)}
+.tk-x:hover{transform:translateY(-6px) rotate(-.5deg)}
+.tk-bn{height:150px;background:linear-gradient(120deg,#0a2a66,#0a5cff) center/cover}
+.tk-body{padding:0 20px 20px}
+.tk-av{width:88px;height:88px;border-radius:50%;border:4px solid #000;margin-top:-44px;background:#0b2a66 center/cover}
+.tk-body b{display:block;font-size:20px;margin-top:6px}
+.tk-body>span:not(.b){color:#71767b;font-size:14.5px}
+.tk-body p{margin:10px 0 16px;font-size:14.5px;line-height:1.55;white-space:pre-wrap;color:#e7e9ea}
+.tk-body .b{height:38px}
+@media (max-width:860px){.tk{grid-template-columns:1fr;gap:32px}.tk-ca{flex-wrap:wrap}.tk-ca code{flex-basis:100%;order:3}}
+
 /* responsive */
 @media (max-width:860px){
   .gm-grid{grid-template-columns:1fr;gap:36px}
@@ -436,6 +464,7 @@ footer{background:rgba(9,11,16,.82)}
   <symbol id="win" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5.5 10.5 4.4v7.1H3zm0 13 7.5 1.1v-7.1H3zm8.5 1.3L21 21v-8.5h-9.5zm0-15.6v7.3H21V3z"/></symbol>
   <symbol id="tux" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c-2.2 0-3.6 1.8-3.6 4.4 0 1.5.3 2.3-.6 3.7C6.6 12 5 14.2 5 16.7c0 .6.1 1.1.3 1.6-.8.4-1.6 1-1.4 1.8.3 1 2.2.9 3.5 1.4 1.2.5 2.2.8 3-.2.5.1 1 .1 1.6.1s1.1 0 1.6-.1c.8 1 1.8.7 3 .2 1.3-.5 3.2-.4 3.5-1.4.2-.8-.6-1.4-1.4-1.8.2-.5.3-1 .3-1.6 0-2.5-1.6-4.7-2.8-6.6-.9-1.4-.6-2.2-.6-3.7C15.6 3.8 14.2 2 12 2z"/></symbol>
   <symbol id="chev" viewBox="0 0 12 12"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="xlogo" viewBox="0 0 24 24"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></symbol>
   <symbol id="caret" viewBox="0 0 12 12"><path d="M2.5 4h7L6 8.5z" fill="currentColor"/></symbol>
   <symbol id="check" viewBox="0 0 24 24"><path d="m4 12.5 5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.8l-12-7.5A1 1 0 0 0 7 4.5z"/></symbol>
@@ -452,6 +481,7 @@ footer{background:rgba(9,11,16,.82)}
     <a href="#pricing">Pricing</a>
     <a href="https://docs.trysonoma.xyz">Docs</a>
   </nav>
+  <a class="navx hidden" id="navX" href="#" target="_blank" rel="noopener" aria-label="Sonoma on X"><svg><use href="#xlogo"/></svg></a>
   <a class="b cyan" href="download/Sonoma-Setup-0.1.0.exe" download><svg><use href="#win"/></svg><span>Download</span></a>
 </header>
 
@@ -600,6 +630,25 @@ footer{background:rgba(9,11,16,.82)}
     <h2>Bring your music from anywhere</h2>
     <p class="lead">Paste a Spotify playlist link or open an M3U file. Sonoma matches every song to the files in your library.</p>
     <div class="glass" id="mig"><div class="flyers"><span class="fly" style="--c:#1ed760">SPT</span><span class="fly" style="--c:#97e6ff">M3U</span><span class="fly" style="--c:#e0f542">TXT</span><span class="fly" style="--c:#ff8a4c">CSV</span><span class="fly" style="--c:#b69cff">PLS</span><span class="fly" style="--c:#ff5c8a">XSPF</span><span class="fly" style="--c:#ffffff">LRC</span></div><div class="back"></div><div class="front"><i class="slot"></i><i class="slot"></i><i class="slot"></i></div></div>
+  </div>
+</section>
+
+<section class="token hidden" id="token">
+  <div class="wrap">
+    <div class="tk">
+      <div class="tk-l">
+        <span class="tag">/token</span>
+        <h2><span id="tkTicker">$SONOMA</span> <em class="tk-state" id="tkState">coming soon</em></h2>
+        <p class="lead">The community token of Sonoma on <span id="tkChain">Robinhood Chain</span>. The app stays free and open source for everyone, token or not.</p>
+        <div class="tk-ca" id="tkCaBox"><small>Contract address</small><code id="tkCa"></code><button class="b out" id="tkCopy" type="button">Copy</button></div>
+        <div class="tk-links" id="tkLinks"></div>
+        <p class="tk-note">Always check the contract address here or on our X account before buying. Crypto is risky; nothing on this page is financial advice.</p>
+      </div>
+      <a class="tk-x hidden" id="tkX" href="#" target="_blank" rel="noopener">
+        <div class="tk-bn" id="tkBn"></div>
+        <div class="tk-body"><div class="tk-av" id="tkAv"></div><b id="tkName">Sonoma</b><span id="tkHandle"></span><p id="tkBio"></p><span class="b cyan"><svg><use href="#xlogo"/></svg>Follow on X</span></div>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -885,6 +934,34 @@ footer{background:rgba(9,11,16,.82)}
   // smart link copy morph
   const cp = document.getElementById('copyDemo');
   setInterval(() => { cp.classList.add('done'); setTimeout(() => cp.classList.remove('done'), 1200); }, 4000);
+})();
+
+// ---------- token & X account (managed in /admin) ----------
+(async () => {
+  let c;
+  try { const r = await fetch('/api/public', { cache: 'no-store' }); if (!r.ok) return; c = await r.json(); } catch { return; }
+  const $ = id => document.getElementById(id);
+  const xUrl = c.x?.handle ? `https://x.com/${encodeURIComponent(c.x.handle)}` : '';
+  if (xUrl) { $('navX').href = xUrl; $('navX').classList.remove('hidden'); }
+  if (!c.ca && !xUrl) return;
+  $('token').classList.remove('hidden');
+  $('tkTicker').textContent = '$' + (c.ticker || 'SONOMA');
+  $('tkChain').textContent = c.chain || 'Robinhood Chain';
+  const live = c.launchState === 'live';
+  $('tkState').textContent = live ? 'live' : 'coming soon'; $('tkState').classList.toggle('live', live);
+  if (c.ca) {
+    $('tkCa').textContent = c.ca;
+    $('tkCopy').onclick = async () => { try { await navigator.clipboard.writeText(c.ca); $('tkCopy').textContent = 'Copied'; } catch { $('tkCopy').textContent = 'Select & copy'; } setTimeout(() => $('tkCopy').textContent = 'Copy', 1500); };
+  } else $('tkCaBox').classList.add('hidden');
+  const links = [['Buy', c.buyUrl, 'cyan'], ['Chart', c.chartUrl, 'out'], ['Explorer', c.explorerUrl, 'out']].filter(l => /^https:\/\//.test(l[1] || ''));
+  $('tkLinks').innerHTML = links.map(([t, u, k]) => `<a class="b ${k}" href="${u.replace(/"/g, '&quot;')}" target="_blank" rel="noopener">${t}</a>`).join('');
+  if (xUrl) {
+    $('tkX').href = xUrl; $('tkX').classList.remove('hidden');
+    $('tkName').textContent = c.x.name || 'Sonoma'; $('tkHandle').textContent = '@' + c.x.handle; $('tkBio').textContent = c.x.bio || '';
+    if (c.avatar) $('tkAv').style.backgroundImage = `url('${c.avatar}')`;
+    if (c.banner) $('tkBn').style.backgroundImage = `url('${c.banner}')`;
+  }
+  document.querySelectorAll('#token .rv').forEach(el => el.classList.add('in'));
 })();
 
 // download dropdown
