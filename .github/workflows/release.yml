@@ -30,7 +30,14 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
       - run: npm ci
-      - run: npm run ${{ matrix.script }}
+      - name: Build (retries: DMG creation on macOS runners fails now and then)
+        shell: bash
+        run: |
+          for i in 1 2 3; do
+            npm run ${{ matrix.script }} && exit 0
+            echo "Build failed, retrying ($i/3)…"; rm -rf release; sleep 20
+          done
+          exit 1
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
       - uses: actions/upload-artifact@v4

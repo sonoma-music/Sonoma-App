@@ -1,6 +1,6 @@
 {
   "name": "sonoma-mobile",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
   "description": "Sonoma for Android and iOS (Capacitor). Shares the UI in ../app/renderer.",
   "scripts": {
