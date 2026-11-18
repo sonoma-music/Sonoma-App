@@ -1,6 +1,6 @@
 {
   "name": "sonoma",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Sonoma: ad-free desktop music player with word-synced lyrics, playlist import, smart links and listening rooms",
   "main": "app/main.js",
   "license": "MIT",
