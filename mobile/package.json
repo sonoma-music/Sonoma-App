@@ -1,0 +1,20 @@
+{
+  "name": "sonoma-mobile",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Sonoma for Android and iOS (Capacitor). Shares the UI in ../app/renderer.",
+  "scripts": {
+    "build": "node build.js",
+    "sync": "node build.js && npx cap sync"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/core": "^6.2.0",
+    "@capacitor/ios": "^6.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^6.2.0",
+    "esbuild": "^0.24.0"
+  }
+}

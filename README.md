@@ -5,7 +5,7 @@
 <h1 align="center">Sonoma</h1>
 
 <p align="center">
-  A free, open-source desktop music player with word-synced lyrics, playlist import,<br>
+  A free, open-source music player for desktop and phone with word-synced lyrics, playlist import,<br>
   listening rooms and a legal way to build a lossless library.
 </p>
 
@@ -13,8 +13,7 @@
   <a href="https://trysonoma.xyz">Website</a> ·
   <a href="https://docs.trysonoma.xyz">Documentation</a> ·
   <a href="https://github.com/sonoma-music/Sonoma-App">GitHub</a> ·
-  <a href="https://trysonoma.xyz/download/Sonoma-Setup-0.1.0.exe">Download for Windows</a> ·
-  <a href="https://trysonoma.xyz/download/Sonoma-0.1.0-linux-x64.tar.gz">Download for Linux</a>
+  <a href="https://github.com/sonoma-music/Sonoma-App/releases/latest">Download</a>
 </p>
 
 ---
@@ -35,10 +34,14 @@ Sonoma never downloads from streaming services. It only uses sources that allow 
 
 | Platform | File |
 |---|---|
-| Windows 10 / 11 (x64) | [`Sonoma-Setup-0.1.0.exe`](https://trysonoma.xyz/download/Sonoma-Setup-0.1.0.exe) |
-| Linux (x64) | [`Sonoma-0.1.0-linux-x64.tar.gz`](https://trysonoma.xyz/download/Sonoma-0.1.0-linux-x64.tar.gz) — extract and run `./sonoma` |
+| Windows 10 / 11 (x64) | [`Sonoma-Setup.exe`](https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-Setup.exe) |
+| macOS, Apple Silicon | [`Sonoma-mac-arm64.dmg`](https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-mac-arm64.dmg) |
+| macOS, Intel | [`Sonoma-mac-x64.dmg`](https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-mac-x64.dmg) |
+| Linux (x64) | [`Sonoma-linux-x64.AppImage`](https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-linux-x64.AppImage) · [`.tar.gz`](https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-linux-x64.tar.gz) |
+| Android 7+ | [`Sonoma-android.apk`](https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-android.apk) |
+| iPhone & iPad (iOS 14+) | [`Sonoma-ios-unsigned.ipa`](https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-ios-unsigned.ipa) — sideload with AltStore or Sideloadly |
 
-The Windows installer is not code-signed yet, so SmartScreen may warn you. Choose **More info → Run anyway**, or build it yourself from source.
+Builds aren't code-signed yet: Windows SmartScreen and macOS Gatekeeper will ask you to confirm the first launch. See [Getting started](docs/getting-started.md) for step-by-step install help. Every release is built by GitHub Actions from this repository ([workflow](.github/workflows/release.yml)).
 
 ## Run from source
 
@@ -60,8 +63,9 @@ npm run server        # ws://localhost:8787, set PORT to change it
 Build installers:
 
 ```bash
-npm run dist:win      # release/Sonoma-Setup-<version>.exe
-npm run dist:linux    # release/Sonoma-<version>-linux-x64.tar.gz
+npm run dist:win      # release/Sonoma-Setup.exe
+npm run dist:linux    # release/Sonoma-linux-x64.AppImage and .tar.gz
+npm run dist:mac      # release/Sonoma-mac-arm64.dmg and -x64.dmg (run on a Mac)
 ```
 
 ## Project layout
@@ -78,6 +82,7 @@ app/
     get.js         The Get music screens
     lyrics.js      LRC parsing and lyric lookup
     fonts/         Inter (SIL Open Font License)
+mobile/            Android & iOS app (Capacitor) sharing app/renderer; build.js bundles it
 server/server.js   WebSocket server for listening rooms
 landing/           Website at trysonoma.xyz (single HTML file)
 docs/              Documentation (Markdown), published at docs.trysonoma.xyz

@@ -1,0 +1,10 @@
+{
+  "appId": "xyz.trysonoma.app",
+  "appName": "Sonoma",
+  "webDir": "www",
+  "backgroundColor": "#0b1e36",
+  "server": { "androidScheme": "https", "cleartext": true },
+  "android": { "allowMixedContent": true },
+  "ios": { "contentInset": "never", "backgroundColor": "#0b1e36" },
+  "plugins": { "CapacitorHttp": { "enabled": false } }
+}

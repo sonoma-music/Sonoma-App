@@ -9,3 +9,7 @@ Thumbs.db
 .claude/
 admin/data/
 marketing/x/out/
+mobile/node_modules/
+mobile/www/
+mobile/android/
+mobile/ios/

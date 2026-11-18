@@ -461,5 +461,6 @@ function createWatcher({ readTags, onAdded }) {
 
 module.exports = {
   resolveLink, buyLinks, providerList, searchSources, sourceTracks, findFree,
-  metaLookup, metaApply, createQueue, cdStatus, cdInfo, cdRip, createWatcher, discId
+  metaLookup, metaApply, createQueue, cdStatus, cdInfo, cdRip, createWatcher, discId,
+  lyricsFor, coverFor // also used by the mobile app
 };

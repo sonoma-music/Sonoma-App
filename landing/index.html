@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sonoma — free music player with word-synced lyrics and no ads</title>
-<meta name="description" content="Sonoma is a free, ad-free desktop music player for Windows and Linux with word-synced lyrics, playlist import, smart links and listening rooms.">
+<meta name="description" content="Sonoma is a free, ad-free music player for Windows, macOS, Linux, Android and iOS with word-synced lyrics, playlist import, smart links and listening rooms.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -430,6 +430,26 @@ footer{background:rgba(9,11,16,.82)}
 .tk-body .b{height:38px}
 @media (max-width:860px){.tk{grid-template-columns:1fr;gap:32px}.tk-ca{flex-wrap:wrap}.tk-ca code{flex-basis:100%;order:3}}
 
+/* ---------- downloads ---------- */
+.downloads{padding:40px 0 140px;background:var(--bg)}
+.plats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:960px;margin:56px auto 0;text-align:left}
+.plat{position:relative;display:grid;grid-template-columns:44px 1fr;grid-template-rows:auto auto;column-gap:14px;align-items:center;padding:20px;border-radius:14px;background:var(--card);box-shadow:0 0 0 1px var(--line);transition:transform .6s var(--spring),box-shadow .3s,background .3s}
+.plat:hover{transform:translateY(-4px);background:var(--card2);box-shadow:0 0 0 1px rgba(151,230,255,.3),0 24px 50px -30px rgba(10,92,255,.6)}
+.plat svg{grid-row:1/3;width:44px;height:44px;padding:10px;border-radius:12px;background:rgba(255,255,255,.06);color:var(--ink)}
+.plat b{font-size:16px;font-weight:500}
+.plat span{font-size:13px;color:var(--muted)}
+.plat span i{font-style:normal;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.plat em{position:absolute;right:16px;top:16px;font:500 11px var(--mono);font-style:normal;padding:2px 8px;border-radius:999px;background:rgba(151,230,255,.1);color:var(--cyan)}
+.plat.mine{box-shadow:0 0 0 1px rgba(151,230,255,.45)}
+.center-note{text-align:center!important;margin-left:auto!important;margin-right:auto!important;max-width:720px}
+.center-note a{color:var(--cyan);text-decoration:underline;text-underline-offset:3px}
+.dd{min-width:270px}
+.dd a{justify-content:flex-start}
+.dd a span{flex:1}
+.dd a small{font:11px var(--mono);color:var(--faint)}
+@media (max-width:860px){.plats{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.plats{grid-template-columns:1fr}}
+
 /* responsive */
 @media (max-width:860px){
   .gm-grid{grid-template-columns:1fr;gap:36px}
@@ -465,6 +485,8 @@ footer{background:rgba(9,11,16,.82)}
   <symbol id="tux" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c-2.2 0-3.6 1.8-3.6 4.4 0 1.5.3 2.3-.6 3.7C6.6 12 5 14.2 5 16.7c0 .6.1 1.1.3 1.6-.8.4-1.6 1-1.4 1.8.3 1 2.2.9 3.5 1.4 1.2.5 2.2.8 3-.2.5.1 1 .1 1.6.1s1.1 0 1.6-.1c.8 1 1.8.7 3 .2 1.3-.5 3.2-.4 3.5-1.4.2-.8-.6-1.4-1.4-1.8.2-.5.3-1 .3-1.6 0-2.5-1.6-4.7-2.8-6.6-.9-1.4-.6-2.2-.6-3.7C15.6 3.8 14.2 2 12 2z"/></symbol>
   <symbol id="chev" viewBox="0 0 12 12"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="xlogo" viewBox="0 0 24 24"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></symbol>
+  <symbol id="apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.2 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.6-3.9zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></symbol>
+  <symbol id="android" viewBox="0 0 24 24"><path fill="currentColor" d="M17.6 9.5 19.4 6.4a.5.5 0 0 0-.9-.5l-1.8 3.1A10.9 10.9 0 0 0 12 8a10.9 10.9 0 0 0-4.7 1L5.5 5.9a.5.5 0 0 0-.9.5l1.8 3.1A9.6 9.6 0 0 0 1.5 17h21a9.6 9.6 0 0 0-4.9-7.5zM7 14.3a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></symbol>
   <symbol id="caret" viewBox="0 0 12 12"><path d="M2.5 4h7L6 8.5z" fill="currentColor"/></symbol>
   <symbol id="check" viewBox="0 0 24 24"><path d="m4 12.5 5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.8l-12-7.5A1 1 0 0 0 7 4.5z"/></symbol>
@@ -482,7 +504,7 @@ footer{background:rgba(9,11,16,.82)}
     <a href="https://docs.trysonoma.xyz">Docs</a>
   </nav>
   <a class="navx hidden" id="navX" href="#" target="_blank" rel="noopener" aria-label="Sonoma on X"><svg><use href="#xlogo"/></svg></a>
-  <a class="b cyan" href="download/Sonoma-Setup-0.1.0.exe" download><svg><use href="#win"/></svg><span>Download</span></a>
+  <a class="b cyan" href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-Setup.exe" download><svg><use href="#win"/></svg><span>Download</span></a>
 </header>
 
 <main>
@@ -492,15 +514,19 @@ footer{background:rgba(9,11,16,.82)}
     <p class="lead">Lyrics that light up word by word, playlists that move over in one click, a profile that's yours and rooms to listen together.</p>
     <div class="cta" id="download">
       <div class="split">
-        <a class="b cyan" href="download/Sonoma-Setup-0.1.0.exe" download>Download for Windows</a>
+        <a class="b cyan" id="dlMain" href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-Setup.exe" download>Download for Windows</a>
         <button class="b cyan caret" id="ddBtn" aria-label="Other platforms"><svg><use href="#caret"/></svg></button>
         <div class="dd" id="dd">
-          <a href="download/Sonoma-Setup-0.1.0.exe" download><svg><use href="#win"/></svg><span>Windows 10 / 11 (.exe)</span></a>
-          <a href="download/Sonoma-0.1.0-linux-x64.tar.gz" download><svg><use href="#tux"/></svg><span>Linux x64 (.tar.gz)</span></a>
+          <a href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-Setup.exe" download><svg><use href="#win"/></svg><span>Windows 10 / 11</span><small>.exe</small></a>
+          <a href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-mac-arm64.dmg" download><svg><use href="#apple"/></svg><span>macOS · Apple Silicon</span><small>.dmg</small></a>
+          <a href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-mac-x64.dmg" download><svg><use href="#apple"/></svg><span>macOS · Intel</span><small>.dmg</small></a>
+          <a href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-linux-x64.AppImage" download><svg><use href="#tux"/></svg><span>Linux</span><small>.AppImage</small></a>
+          <a href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-android.apk" download><svg><use href="#android"/></svg><span>Android</span><small>.apk</small></a>
+          <a href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-ios-unsigned.ipa" download><svg><use href="#apple"/></svg><span>iPhone &amp; iPad</span><small>.ipa</small></a>
         </div>
       </div>
       <a class="b out" href="#get-music"><svg><use href="#srch"/></svg>Get music</a>
-      <a class="b out" href="download/Sonoma-0.1.0-linux-x64.tar.gz" download><svg><use href="#tux"/></svg>Linux</a>
+      <a class="b out" href="#downloads"><svg><use href="#gh"/></svg>All platforms</a>
     </div>
   </div>
 
@@ -633,6 +659,23 @@ footer{background:rgba(9,11,16,.82)}
   </div>
 </section>
 
+<section class="downloads center" id="downloads">
+  <div class="wrap">
+    <span class="tag">/download</span>
+    <h2>Sonoma, everywhere you listen.</h2>
+    <p class="lead">One player for desktop and phone. Free on every platform, built from the same open-source code.</p>
+    <div class="plats">
+      <a class="plat" href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-Setup.exe" download><svg><use href="#win"/></svg><b>Windows</b><span>Windows 10 / 11 · x64</span><em>.exe</em></a>
+      <a class="plat" href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-mac-arm64.dmg" download><svg><use href="#apple"/></svg><b>macOS</b><span>Apple Silicon (M1–M4)</span><em>.dmg</em></a>
+      <a class="plat" href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-mac-x64.dmg" download><svg><use href="#apple"/></svg><b>macOS</b><span>Intel</span><em>.dmg</em></a>
+      <a class="plat" href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-linux-x64.AppImage" download><svg><use href="#tux"/></svg><b>Linux</b><span>x64 · AppImage or <i data-href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-linux-x64.tar.gz">tar.gz</i></span><em>.AppImage</em></a>
+      <a class="plat" href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-android.apk" download><svg><use href="#android"/></svg><b>Android</b><span>Android 7+ · install the APK</span><em>.apk</em></a>
+      <a class="plat" href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-ios-unsigned.ipa" download><svg><use href="#apple"/></svg><b>iPhone &amp; iPad</b><span>iOS 14+ · sideload with AltStore</span><em>.ipa</em></a>
+    </div>
+    <p class="note center-note">First launch tips: on macOS right-click the app and choose <b>Open</b>; on Android allow installing from your browser; on iPhone install the IPA with AltStore or Sideloadly. <a href="https://docs.trysonoma.xyz/getting-started">Step-by-step guide</a></p>
+  </div>
+</section>
+
 <section class="token hidden" id="token">
   <div class="wrap">
     <div class="tk">
@@ -668,7 +711,7 @@ footer{background:rgba(9,11,16,.82)}
           <li><svg><use href="#check"/></svg><span>Spotify and M3U import, smart links</span></li>
           <li><svg><use href="#check"/></svg><span>Listening rooms for up to 20 people</span></li>
         </ul>
-        <a class="b cyan" href="download/Sonoma-Setup-0.1.0.exe" download>Download for Windows</a>
+        <a class="b cyan" href="#downloads">Download Sonoma</a>
       </div>
       <div class="plan plus">
         <h4>Open source <em>MIT licence</em></h4>
@@ -705,7 +748,7 @@ footer{background:rgba(9,11,16,.82)}
       <details><summary><span>Is Sonoma completely free?</span><svg><use href="#caret"/></svg></summary><p>Yes. Every feature is free, with no ads, no paid plans and no account. Sonoma is open source under the MIT licence.</p></details>
       <details><summary><span>Can I import my playlists from Spotify?</span><svg><use href="#caret"/></svg></summary><p>Yes. Paste a playlist link (you add your own free Spotify developer keys in Settings) or open an M3U file. Songs are matched to the files in your library.</p></details>
       <details><summary><span>Can Sonoma download from Spotify or Tidal?</span><svg><use href="#caret"/></svg></summary><p>No. Sonoma identifies the song from your link, then shows stores where you can buy the lossless file and free sources that allow downloading, such as Internet Archive and Jamendo.</p></details>
-      <details><summary><span>Which systems are supported?</span><svg><use href="#caret"/></svg></summary><p>Windows 10 and 11, and most Linux distributions.</p></details>
+      <details><summary><span>Which systems are supported?</span><svg><use href="#caret"/></svg></summary><p>Windows 10 and 11, macOS (Apple Silicon and Intel), Linux (AppImage), Android 7+ and iPhone/iPad with iOS 14+. The phone apps play the music you add to them; CD ripping and watch folders are desktop-only.</p></details>
       <details><summary><span>Does Sonoma collect my listening data?</span><svg><use href="#caret"/></svg></summary><p>No. Nothing is sent unless you opt in to crash reports. Lyrics are looked up on LRCLIB by song title and artist only.</p></details>
       <details><summary><span>How do listening rooms work?</span><svg><use href="#caret"/></svg></summary><p>Start a room server with one command (or use a friend's), create a room and share the code. The host picks the music and everyone stays in sync.</p></details>
       <details><summary><span>Is Sonoma open source?</span><svg><use href="#caret"/></svg></summary><p>Yes, under the MIT licence. You can read the code, build it yourself and run your own room server.</p></details>
@@ -716,10 +759,10 @@ footer{background:rgba(9,11,16,.82)}
 <section class="final">
   <div class="wrap">
     <h2>Start listening to music the right way</h2>
-    <p>Free forever. Available for Windows and Linux.</p>
+    <p>Free forever. Windows, macOS, Linux, Android and iOS.</p>
     <div class="final-cta">
-      <a class="b cyan dl-win" href="download/Sonoma-Setup-0.1.0.exe" download><svg><use href="#win"/></svg>Download for Windows</a>
-      <a class="b out dl-linux" href="download/Sonoma-0.1.0-linux-x64.tar.gz" download><svg><use href="#tux"/></svg>Linux</a>
+      <a class="b cyan dl-win" id="dlFinal" href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-Setup.exe" download><svg><use href="#win"/></svg><span>Download for Windows</span></a>
+      <a class="b out dl-linux" href="#downloads">All platforms</a>
     </div>
   </div>
 </section>
@@ -731,7 +774,7 @@ footer{background:rgba(9,11,16,.82)}
       <div class="fcols">
         <div><a href="#" class="brand lg" style="color:var(--ink)"><svg><use href="#logo"/></svg></a><p>A desktop music player with word-synced lyrics, playlist import and rooms to listen with friends.</p></div>
         <div><h6>Product</h6><a href="#features">Features</a><a href="#get-music">Get music</a><a href="#import">Import</a><a href="#privacy">Privacy</a><a href="#pricing">Pricing</a></div>
-        <div><h6>Download</h6><a href="download/Sonoma-Setup-0.1.0.exe" download>Windows</a><a href="download/Sonoma-0.1.0-linux-x64.tar.gz" download>Linux</a></div>
+        <div><h6>Download</h6><a href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-Setup.exe" download>Windows</a><a href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-mac-arm64.dmg" download>macOS</a><a href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-linux-x64.AppImage" download>Linux</a><a href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-android.apk" download>Android</a><a href="https://github.com/sonoma-music/Sonoma-App/releases/latest/download/Sonoma-ios-unsigned.ipa" download>iOS</a></div>
         <div><h6>Resources</h6><a href="https://docs.trysonoma.xyz">Documentation</a><a href="https://github.com/sonoma-music/Sonoma-App" target="_blank" rel="noopener">GitHub</a><a href="#faq">FAQ</a><a href="#privacy">How we handle data</a></div>
         <div><h6>Legal</h6><a href="https://opensource.org/license/mit" target="_blank" rel="noopener">MIT licence</a></div>
       </div>
@@ -851,7 +894,7 @@ footer{background:rgba(9,11,16,.82)}
   const groups = [
     '.hero h1', '.hero .lead', '.cta', '.shot',
     '.tag', 'section h2', 'section .lead',
-    '.bento .cell', '.gm-demo', '.gm-list > div', '.gm-note', '.pgrid > div', '.glass', '.plan', '.cmp', '.note', 'details', '.final p', '.final .b', 'footer'
+    '.bento .cell', '.plat', '.gm-demo', '.gm-list > div', '.gm-note', '.pgrid > div', '.glass', '.plan', '.cmp', '.note', 'details', '.final p', '.final .b', 'footer'
   ];
   const seen = new Set();
   groups.forEach(sel => document.querySelectorAll(sel).forEach(el => {
@@ -962,6 +1005,27 @@ footer{background:rgba(9,11,16,.82)}
     if (c.banner) $('tkBn').style.backgroundImage = `url('${c.banner}')`;
   }
   document.querySelectorAll('#token .rv').forEach(el => el.classList.add('in'));
+})();
+
+// ---------- pick the right download for this device ----------
+(() => {
+  const REL = 'https://github.com/sonoma-music/Sonoma-App/releases/latest/download/';
+  const ua = navigator.userAgent, plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+  let k = 'win';
+  if (/android/i.test(ua)) k = 'android';
+  else if (/iphone|ipad|ipod/i.test(ua) || (/mac/i.test(plat) && navigator.maxTouchPoints > 1)) k = 'ios';
+  else if (/mac/i.test(plat) || /mac os x/i.test(ua)) k = 'mac';
+  else if (/linux/i.test(plat) || /linux/i.test(ua)) k = 'linux';
+  const map = {
+    win: ['Sonoma-Setup.exe', 'Download for Windows', '#win'], mac: ['Sonoma-mac-arm64.dmg', 'Download for Mac', '#apple'],
+    linux: ['Sonoma-linux-x64.AppImage', 'Download for Linux', '#tux'], android: ['Sonoma-android.apk', 'Download for Android', '#android'],
+    ios: ['Sonoma-ios-unsigned.ipa', 'Download for iPhone', '#apple']
+  }[k];
+  const set = a => { if (!a) return; a.href = REL + map[0]; const sp = a.querySelector('span'); if (sp) sp.textContent = map[1]; else a.textContent = map[1]; const u = a.querySelector('use'); if (u) u.setAttribute('href', map[2]); };
+  set(document.getElementById('dlMain')); set(document.getElementById('dlFinal'));
+  const navDl = document.querySelector('.nav .b.cyan'); if (navDl) navDl.href = REL + map[0];
+  document.querySelectorAll('.plat').forEach(p => { if (p.getAttribute('href').endsWith(map[0])) p.classList.add('mine'); });
+  document.querySelectorAll('.plat span i[data-href]').forEach(i => i.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); location.href = i.dataset.href; }));
 })();
 
 // download dropdown

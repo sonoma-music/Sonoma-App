@@ -1,15 +1,16 @@
 {
   "name": "sonoma",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Sonoma: ad-free desktop music player with word-synced lyrics, playlist import, smart links and listening rooms",
   "main": "app/main.js",
   "license": "MIT",
   "scripts": {
     "start": "electron .",
     "server": "node server/server.js",
-    "dist:win": "electron-builder --win nsis --x64",
-    "dist:linux": "electron-builder --linux tar.gz --x64",
-    "docs": "node tools/build-docs.js"
+    "dist:win": "electron-builder --win nsis --x64 --publish never",
+    "dist:linux": "electron-builder --linux AppImage tar.gz --x64 --publish never",
+    "docs": "node tools/build-docs.js",
+    "dist:mac": "electron-builder --mac --publish never"
   },
   "dependencies": {
     "music-metadata": "^11.0.0",
@@ -47,7 +48,7 @@
     ],
     "win": {
       "icon": "build/icon.ico",
-      "artifactName": "Sonoma-Setup-${version}.exe"
+      "artifactName": "Sonoma-Setup.exe"
     },
     "nsis": {
       "oneClick": false,
@@ -58,7 +59,32 @@
     "linux": {
       "icon": "build/icon.png",
       "category": "Audio",
-      "artifactName": "Sonoma-${version}-linux-x64.${ext}"
+      "artifactName": "Sonoma-linux-x64.${ext}",
+      "target": [
+        "AppImage",
+        "tar.gz"
+      ]
+    },
+    "afterPack": "build/adhoc-sign.js",
+    "mac": {
+      "icon": "build/icon-mac.png",
+      "category": "public.app-category.music",
+      "identity": null,
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "artifactName": "Sonoma-mac-${arch}.${ext}",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ]
+    },
+    "dmg": {
+      "title": "Sonoma"
     }
   }
 }

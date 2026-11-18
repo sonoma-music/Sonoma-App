@@ -4,7 +4,7 @@ order: 1
 ---
 # Sonoma documentation
 
-Sonoma is a free, open-source desktop music player for Windows and Linux. It plays the music you own, lights up lyrics word by word, brings your playlists over from other apps, lets you listen together with friends, and helps you build a lossless library from legal sources.
+Sonoma is a free, open-source music player for Windows, macOS, Linux, Android and iOS. It plays the music you own, lights up lyrics word by word, brings your playlists over from other apps, lets you listen together with friends, and helps you build a lossless library from legal sources.
 
 ## Who these docs are for
 
